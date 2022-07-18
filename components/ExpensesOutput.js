@@ -40,6 +40,42 @@ const DUMMY_EXPENSES = [
         description: 'Shaving beards',
         amount: 3000.00,
         date: Date("2021-06-07")
+    },
+    {
+        id: 'e7',
+        description: 'House Rent',
+        amount: 500000.00,
+        date: Date("2021-05-19")
+    },
+    {
+        id: 'e8',
+        description: 'Groceries',
+        amount: 50500.00,
+        date: Date("2021-06-20")
+    },
+    {
+        id: 'e9',
+        description: 'Feeding motherless home',
+        amount: 300000.00,
+        date: Date("2021-05-31")
+    },
+    {
+        id: 'e10',
+        description: 'Internet Subscription',
+        amount: 20000.00,
+        date: Date("2021-06-01")
+    },
+    {
+        id: 'e11',
+        description: 'DSTV subscription',
+        amount: 19000.00,
+        date: Date("2021-06-04")
+    },
+    {
+        id: 'e12',
+        description: 'Birthday Items',
+        amount: 200000.00,
+        date: Date("2021-06-19")
     }
 ]
 
@@ -57,6 +93,5 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: AppColors.colors.primaryColor,
         paddingHorizontal: 5,
-        
     }
 });
