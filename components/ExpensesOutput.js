@@ -54,7 +54,9 @@ export default function ExpenseOutput({ expenses, expensesPeriod }){
 
 const styles = StyleSheet.create({
     outputContainer: {
-        backgroundColor: AppColors.colors.accentColor,
-        // flex: 1,
+        flex: 1,
+        backgroundColor: AppColors.colors.primaryColor,
+        paddingHorizontal: 5,
+        
     }
 });

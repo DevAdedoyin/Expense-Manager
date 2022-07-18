@@ -20,19 +20,19 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginHorizontal: 15,
-        marginTop: 15,
+        marginTop: 35,
         alignItems: 'center',
         borderRadius: 8,
         backgroundColor: AppColors.colors.summarBgColor,
         padding: 10,
     },
     periodStyle: {
-        color: AppColors.colors.primaryColor,
+        color: AppColors.colors.textColorSecondary,
         fontSize: 14,
     },
     sumStyle: {
-        color: AppColors.colors.primaryColor,
+        color: AppColors.colors.textColorSecondary,
         fontSize: 18,
         fontWeight: 'bold'
     }
-})
+});
