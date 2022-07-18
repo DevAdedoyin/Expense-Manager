@@ -50,8 +50,7 @@ function ExpensesOverview() {
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons name="calendar" color={color} size={size} />
                 )
-            }}/>
-            
+            }}/>    
         </BottomTab.Navigator>
     );
 };
