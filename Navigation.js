@@ -42,7 +42,7 @@ function ExpensesOverview() {
                 tabBarLabel: "Recent Expenses",
                 tabBarIcon: ({ color, size }) => (
                     <Ionicons name="hourglass" color={color} size={size} />
-    )
+                 )
             }}/>
             <BottomTab.Screen component={AllExpenses} name="AllExpenses" options={{
                 title: "All Expenses",
