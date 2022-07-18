@@ -16,7 +16,7 @@ export default function ExpenseItem({description, amount, date}) {
                     <Text>{getDate(date)}</Text>
                 </View>
                 <View style={styles.amountContainer}>
-                    <Text style={styles.amountStyle}>{amount}</Text>
+                    <Text style={styles.amountStyle}>₦{amount}</Text>
                 </View>
             </View>
         </Pressable>
@@ -27,7 +27,6 @@ export default function ExpenseItem({description, amount, date}) {
 const styles = StyleSheet.create({
     mainContainer: {
         backgroundColor: 'grey',
-        marginHorizontal: 15,
         marginVertical: 5,
         flexDirection: 'row',
         padding: 7,
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     pressedStyle: {
-       backgroundColor: AppColors.colors.textColorPrimary 
+       opacity: 0.75
     },
     descriptionStyle: {
         fontSize: 17,

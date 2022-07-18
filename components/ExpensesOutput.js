@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
     outputContainer: {
         flex: 1,
         backgroundColor: AppColors.colors.primaryColor,
-        paddingHorizontal: 5,
+        paddingHorizontal: 20,
     }
 });
