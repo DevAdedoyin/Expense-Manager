@@ -23,6 +23,7 @@ export default function Navigations(){
                     <Stack.Screen component={ManageExpenses} name="ManageExpenses" options={{
                         headerStyle: { backgroundColor: AppColors.colors.primaryColor },
                         headerTintColor: AppColors.colors.textColorPrimary,
+                        presentation: 'modal'
                     }}/>
                 </Stack.Navigator>
             </NavigationContainer>
