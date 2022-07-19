@@ -17,11 +17,17 @@ export default function ManageExpenses({ route, navigation }) {
         });
     }, [navigation, isEditing]);
 
-    function cancelHandler(){}
+    function cancelHandler() {
+        navigation.goBack();
+    }
     
-    function confirmHandler() { }
+    function confirmHandler() {
+        navigation.goBack();
+     }
     
-    function deleteHandler(){}
+    function deleteHandler() {
+        navigation.goBack();
+    }
 
     return (<View style={styles.body}>
             <View style={styles.buttonsContainer}>
