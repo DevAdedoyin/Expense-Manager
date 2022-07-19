@@ -13,7 +13,7 @@ export default function ExpenseItem({description, amount, date}) {
             <View style={styles.mainContainer}>
                 <View>
                     <Text style={styles.descriptionStyle}>{description}</Text>
-                    <Text>{getDate(date)}</Text>
+                    <Text style={styles.dateStyle}>{getDate(date)}</Text>
                 </View>
                 <View style={styles.amountContainer}>
                     <Text style={styles.amountStyle}>₦{amount}</Text>
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
         padding: 7,
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 5
+        borderRadius: 5,
+        elevation: 10
     },
     pressedStyle: {
        opacity: 0.75
@@ -40,6 +41,9 @@ const styles = StyleSheet.create({
     descriptionStyle: {
         fontSize: 17,
         fontWeight: 'bold',
+    },
+    dateStyle: {
+        fontWeight: '600',
     },
     amountContainer: {
         minWidth: 70,
@@ -50,8 +54,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     amountStyle: {
-        color: AppColors.colors.amountColor,
+        color: AppColors.colors.summarBgColor,
         fontWeight: 'bold',
-    }
+    },
+    
     
 });

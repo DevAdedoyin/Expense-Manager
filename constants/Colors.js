@@ -7,6 +7,6 @@ export const AppColors = {
         tabBarInactive : "#a9a9a9",
         textColorPrimary: "#f8f8ff",
         textColorSecondary: "#000000",
-        amountColor: '#faf9f6'
+        amountColor: '#e9dcc9'
     }
 }
