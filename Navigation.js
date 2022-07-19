@@ -20,7 +20,10 @@ export default function Navigations(){
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen component={ExpensesOverview} name="ExpensesOverview" options={{headerShown: false}}/>
-                    <Stack.Screen component={ManageExpenses} name="ManageExpenses"/>
+                    <Stack.Screen component={ManageExpenses} name="ManageExpenses" options={{
+                        headerStyle: { backgroundColor: AppColors.colors.primaryColor },
+                        headerTintColor: AppColors.colors.textColorPrimary,
+                    }}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </>

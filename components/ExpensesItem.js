@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         elevation: 10
     },
     pressedStyle: {
-       opacity: 0.75
+        opacity: 0.75,
+        borderRadius: 5
     },
     descriptionStyle: {
         fontSize: 17,
