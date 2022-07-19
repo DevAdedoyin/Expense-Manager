@@ -1,25 +1,26 @@
 import {StyleSheet, View, Text, Pressable } from 'react-native';
 import { AppColors } from '../constants/Colors';
-import { useNavigation } from '@react-navigation/core';
+// import { useNavigation } from '@react-navigation/native';
 import Moment from 'moment';
+import { useNavigation } from '@react-navigation/core';
 
-function getDate(date) {
+export function getDate(date) {
     return Moment(date).format('DD/MM/YYYY')
 }
 
 
 
-export default function ExpenseItem({description, amount, date}) {
-    const navigation = useNavigation();
+export default function ExpenseItem({id, description, amount, date}) {
+    const navigation = useNavigation()
     function pressHandler() {
-        navigation.navigate('ManageExpenses')
+        navigation.navigate('ManageExpenses', { expenseId: id });
     }
     return (
         <Pressable onPress={pressHandler} style={({pressed}) => pressed && styles.pressedStyle } android_ripple={true}>
             <View style={styles.mainContainer}>
                 <View>
                     <Text style={styles.descriptionStyle}>{description}</Text>
-                    <Text style={styles.dateStyle}>{getDate(date)}</Text>
+                    <Text style={styles.dateStyle}>{getDate(date).toString()}</Text>
                 </View>
                 <View style={styles.amountContainer}>
                     <Text style={styles.amountStyle}>₦{amount}</Text>
