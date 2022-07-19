@@ -1,15 +1,21 @@
 import {StyleSheet, View, Text, Pressable } from 'react-native';
 import { AppColors } from '../constants/Colors';
+import { useNavigation } from '@react-navigation/core';
 import Moment from 'moment';
 
 function getDate(date) {
     return Moment(date).format('DD/MM/YYYY')
 }
 
+
+
 export default function ExpenseItem({description, amount, date}) {
-    
+    const navigation = useNavigation();
+    function pressHandler() {
+        navigation.navigate('ManageExpenses')
+    }
     return (
-        <Pressable style={({pressed}) => pressed && styles.pressedStyle } android_ripple={true}>
+        <Pressable onPress={pressHandler} style={({pressed}) => pressed && styles.pressedStyle } android_ripple={true}>
             <View style={styles.mainContainer}>
                 <View>
                     <Text style={styles.descriptionStyle}>{description}</Text>
