@@ -120,8 +120,15 @@ export default function ExpenseProvider({ children }) {
         dispatch({ type: 'UPDATE', payload: { id: id, data: expenseData } });
     }
 
+    const value = {
+        expenses: expenseState,
+        addExpenses: addExpenses,
+        deleteExpenses: deleteExpenses,
+        updateExpenses: updateExpenses,
+    }
+
     return (
-        <ExpenseManager.Provider>
+        <ExpenseManager.Provider value={value}>
             {children}
         </ExpenseManager.Provider>
     );

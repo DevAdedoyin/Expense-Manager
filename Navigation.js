@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Colors, { AppColors } from './constants/Colors';
 import {Ionicons} from '@expo/vector-icons'
 import IconButton from './components/IconButton';
+import ExpenseProvider, { ExpenseManager } from './state/ExpenseManager';
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -16,7 +17,8 @@ const BottomTab = createBottomTabNavigator();
 export default function Navigations(){
     return (
         <>
-            <StatusBar style="auto"/>
+            <StatusBar style="auto" />
+            <ExpenseProvider>
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen component={ExpensesOverview} name="ExpensesOverview" options={{headerShown: false}}/>
@@ -27,6 +29,7 @@ export default function Navigations(){
                     }}/>
                 </Stack.Navigator>
             </NavigationContainer>
+            </ExpenseProvider>
         </>
     );
             
