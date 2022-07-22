@@ -45,7 +45,7 @@ function ExpensesOverview() {
             tabBarInactiveTintColor: AppColors.colors.tabBarInactive,   
             tabBarStyle: { backgroundColor: AppColors.colors.primaryColor, height: 55 },
             tabBarLabelStyle:
-                navigation.isFocused() ? { fontSize: 13, color: AppColors.colors.tabBarActive, paddingBottom: 5, fontWeight: '700' }
+                navigation.isFocused() ? { fontSize: 13, color: AppColors.colors.summarBgColor, paddingBottom: 5, fontWeight: '700' }
                     :
                     { fontSize: 12,  paddingBottom: 5, fontStyle: 'italic' },
             tabBarIconStyle:{ marginTop: 5,  },
