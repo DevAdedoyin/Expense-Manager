@@ -4,7 +4,8 @@ export const AppColors = {
         secondaryColor: "#343434",
         accentColor: "#353535",
         summarBgColor: '#d3d3d3',
-        tabBarInactive : "#a9a9a9",
+        tabBarActive: '#f8ca12',
+        tabBarInactive : "#a7a7a8",
         textColorPrimary: "#f8f8ff",
         textColorSecondary: "#000000",
         amountColor: '#e9dcc9'
