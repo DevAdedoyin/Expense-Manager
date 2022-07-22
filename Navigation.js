@@ -6,7 +6,7 @@ import ManageExpenses from './screens/ManageExpenses';
 import AllExpenses from './screens/AllExpenses';
 import RecentExpenses from './screens/RecentExpenses';
 import { NavigationContainer } from '@react-navigation/native';
-import Colors, { AppColors } from './constants/Colors';
+import { AppColors } from './constants/Colors';
 import {Ionicons} from '@expo/vector-icons'
 import IconButton from './components/IconButton';
 import ExpenseProvider, { ExpenseManager } from './state/ExpenseManager';
@@ -17,13 +17,13 @@ const BottomTab = createBottomTabNavigator();
 export default function Navigations(){
     return (
         <>
-            <StatusBar style="auto" />
+            <StatusBar style="inverted" />
             <ExpenseProvider>
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen component={ExpensesOverview} name="ExpensesOverview" options={{headerShown: false}}/>
                     <Stack.Screen component={ManageExpenses} name="ManageExpenses" options={{
-                        headerStyle: { backgroundColor: AppColors.colors.primaryColor },
+                        headerStyle: { backgroundColor: AppColors.colors.primaryColor,  },
                         headerTintColor: AppColors.colors.textColorPrimary,
                         presentation: 'modal'
                     }}/>
@@ -37,29 +37,35 @@ export default function Navigations(){
 
 function ExpensesOverview() {
     return (
-        <BottomTab.Navigator screenOptions={({navigation})=> ({
+        <BottomTab.Navigator screenOptions={({navigation, route})=> ({
             headerStyle: { backgroundColor: AppColors.colors.primaryColor },
             headerTintColor: AppColors.colors.textColorPrimary,
-        headerRight: ({ tintColor }) => <IconButton color={tintColor} icon='add' size={24} onPress={() => {navigation.navigate("ManageExpenses")}} />,
-            tabBarStyle: { backgroundColor: AppColors.colors.primaryColor },
+            headerRight: ({ tintColor }) => <IconButton color={tintColor} icon='add' size={24} onPress={() => {navigation.navigate("ManageExpenses")}} />,
             tabBarActiveTintColor: AppColors.colors.textColorPrimary,
             tabBarInactiveTintColor: AppColors.colors.tabBarInactive,
-
-            // tabBarLabelStyle: { color: AppColors.colors.textColorPrimary, fontSize: 14, fontWeight: "bold"},
+            tabBarStyle: {backgroundColor: AppColors.colors.primaryColor,},
+            tabBarIcon: ({ focused, size, color }) => {
+                let iconName;
+                switch (route.name) {
+                    case "RecentExpenses":
+                        iconName = focused ? 'hourglass' : 'hourglass-outline';
+                        break;
+                    case "AllExpenses":
+                        iconName = focused ? 'calendar' : 'calendar-outline';
+                        break;
+                    default:
+                        break;
+                }
+               return <Ionicons name={iconName} color={color} size={size} />;
+             }
         })}>
             <BottomTab.Screen component={RecentExpenses} name="RecentExpenses" options={{
                 title: "Recent Expenses",
                 tabBarLabel: "Recent Expenses",
-                tabBarIcon: ({ color, size }) => (
-                    <Ionicons name="hourglass" color={color} size={size} />
-                 )
             }}/>
             <BottomTab.Screen component={AllExpenses} name="AllExpenses" options={{
                 title: "All Expenses",
                 tabBarLabel: "All Expenses",
-                tabBarIcon: ({ color, size }) => (
-                    <Ionicons name="calendar" color={color} size={size} />
-                )
             }}/>    
         </BottomTab.Navigator>
     );
