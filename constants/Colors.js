@@ -1,7 +1,8 @@
 export const AppColors = {
     colors: {
-        primaryColor: "#333333",
+        primaryColor: "black",
         secondaryColor: "#343434",
+        backgroundColor: '#333333',
         accentColor: "#353535",
         summarBgColor: '#d3d3d3',
         tabBarActive: '#f8ca12',

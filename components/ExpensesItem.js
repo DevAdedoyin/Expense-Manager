@@ -34,17 +34,22 @@ export default function ExpenseItem({id, description, amount, date}) {
 const styles = StyleSheet.create({
     mainContainer: {
         backgroundColor: 'grey',
-        marginVertical: 5,
+        marginTop: 5,
+        marginBottom: 7,
         flexDirection: 'row',
         padding: 7,
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 5,
-        elevation: 10
+        elevation: 5,
+        shadowColor: 'white',
+        shadowRadius: 5,
+        shadowOpacity: 0.6,
     },
     pressedStyle: {
         opacity: 0.75,
-        borderRadius: 5
+        borderRadius: 5,
+        
     },
     descriptionStyle: {
         fontSize: 17,
@@ -57,7 +62,8 @@ const styles = StyleSheet.create({
         minWidth: 70,
         paddingHorizontal: 10,
         paddingVertical: 10,
-        backgroundColor: AppColors.colors.accentColor,
+        backgroundColor: "black",    //AppColors.colors.primaryColor,
+        elevation:10,
         borderRadius: 7,
         alignItems: 'center'
     },

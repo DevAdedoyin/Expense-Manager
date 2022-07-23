@@ -37,18 +37,19 @@ export default function Navigations(){
 
 function ExpensesOverview() {
     return (
-        <BottomTab.Navigator screenOptions={({navigation, route})=> ({
+        <BottomTab.Navigator screenOptions={({ navigation, route }) => ({
+            
             headerStyle: { backgroundColor: AppColors.colors.primaryColor },
             headerTintColor: AppColors.colors.textColorPrimary,
             headerRight: ({ tintColor }) => <IconButton color={tintColor} icon='add' size={24} onPress={() => {navigation.navigate("ManageExpenses")}} />,
             tabBarActiveTintColor: AppColors.colors.tabBarActive,
             tabBarInactiveTintColor: AppColors.colors.tabBarInactive,   
-            tabBarStyle: { backgroundColor: AppColors.colors.primaryColor, height: 55 },
+            tabBarStyle: { backgroundColor: AppColors.colors.primaryColor , height: 55 },
             tabBarLabelStyle:
-                navigation.isFocused() ? { fontSize: 13, color: AppColors.colors.summarBgColor, paddingBottom: 5, fontWeight: '700' }
+                navigation.isFocused() ? { fontSize: 13,  paddingBottom: 5, fontWeight: '700' }
                     :
                     { fontSize: 12,  paddingBottom: 5, fontStyle: 'italic' },
-            tabBarIconStyle:{ marginTop: 5,  },
+            tabBarIconStyle:{ marginTop: 5,   },
             tabBarIcon: ({ focused, size, color }) => {
                 let iconName;
                 switch (route.name) {
@@ -61,7 +62,7 @@ function ExpensesOverview() {
                     default:
                         break;
                 }
-                size = focused ? 22 : 14;
+                size = focused ? 22 : 18;
                return <Ionicons name={iconName} color={color} size={size} />;
              }
         })}>
