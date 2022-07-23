@@ -16,7 +16,7 @@ export default function ExpenseItem({id, description, amount, date}) {
         navigation.navigate('ManageExpenses', { expenseId: id });
     }
     return (
-        <Pressable onPress={pressHandler} style={({pressed}) => pressed && styles.pressedStyle } android_ripple={true}>
+        <Pressable onPress={pressHandler} style={({pressed}) => pressed && styles.pressedStyle } >
             <View style={styles.mainContainer}>
                 <View>
                     <Text style={styles.descriptionStyle}>{description}</Text>
@@ -33,23 +33,24 @@ export default function ExpenseItem({id, description, amount, date}) {
 
 const styles = StyleSheet.create({
     mainContainer: {
+        flex: 1,
         backgroundColor: 'grey',
         marginTop: 5,
         marginBottom: 7,
         flexDirection: 'row',
         padding: 7,
         justifyContent: 'space-between',
-        alignItems: 'center',
+        // alignItems: 'center',
         borderRadius: 5,
-        elevation: 5,
-        shadowColor: 'white',
-        shadowRadius: 5,
-        shadowOpacity: 0.6,
+        elevation: 3,
+        // shadowColor: 'grey',
+        // shadowRadius: 5,
+        // shadowOpacity: 0.6,
+        // shadowOffset:{width: 2}
     },
     pressedStyle: {
-        opacity: 0.75,
+        opacity: 0.85,
         borderRadius: 5,
-        
     },
     descriptionStyle: {
         fontSize: 17,
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     },
     amountContainer: {
         minWidth: 70,
-        paddingHorizontal: 10,
+        // paddingHorizontal: 10,
         paddingVertical: 10,
         backgroundColor: "black",    //AppColors.colors.primaryColor,
         elevation:10,
