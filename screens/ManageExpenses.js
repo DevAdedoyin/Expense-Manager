@@ -3,6 +3,7 @@ import {
     Text, View, StyleSheet
 } from "react-native";
 import  AppButton  from "../components/Button";
+import ExpenseForm from "../components/ExpenseManagerForm/ExpenseForm";
 import IconButton from "../components/IconButton";
 import { AppColors } from "../constants/Colors";
 import { ExpenseManager } from "../state/ExpenseManager";
@@ -38,7 +39,8 @@ export default function ManageExpenses({ route, navigation }) {
         navigation.goBack();
     }
 
-    return (<View style={styles.body}>
+    return (<View style={styles.body}>      
+            <ExpenseForm />
             <View style={styles.buttonsContainer}>
                 <AppButton style={styles.buttonStyle} mode="flat" onPress={cancelHandler}>Cancel</AppButton>
                 <AppButton style={styles.buttonStyle} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</AppButton>
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
     body: {
         flex:1,
         backgroundColor: AppColors.colors.primaryColor,
-        padding: 24
+        padding: 20
     },
     buttonStyle: {
         minWidth: 120,
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         flexDirection:'row',
-        alignContent: 'center',
+        // alignContent: 'center',
         justifyContent: 'center',
         borderTopColor: 'white',
         borderTopWidth: 2,
@@ -71,7 +73,9 @@ const styles = StyleSheet.create({
     },
     buttonsContainer: {
         flexDirection: 'row',
+        // flex:1,
         justifyContent: 'center',
-        alignItems:'center'
-    }
+        // alignItems: 'center',
+        // backgroundColor: 'black'
+    },
 });
