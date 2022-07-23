@@ -2,15 +2,41 @@ import { StyleSheet, View } from "react-native";
 import ExpenseInput from "./ExpenseInput";
 
 
-export default function ExpenseForm () {
+export default function ExpenseForm() {
+    
+    const [amountValue, setAmountValue] = useState({
+        amount: '',
+        description: '',
+        date: ''
+    });
+
+    function inputChangeHandler(inputIdentifier, amountText) {
+        setAmountValue((currentInputValues) => {
+            return {
+                ...currentInputValues,
+                [inputIdentifier]: amountText,
+            }
+        });
+    }
+
     return (
         <View style={ styles.form }>
             <View style={styles.amountDateContainer}>
                 <ExpenseInput label='Amount' textInputConfig={{
-                    keyboardType: 'decimal-pad',}} style={styles.inputStyle} />    
-                <ExpenseInput label='Date' style={styles.inputStyle} />
+                    keyboardType: 'decimal-pad',
+                    onChangedText: inputChangeHandler.bind(this, 'amount'),
+                    value: amountValue.amount
+                }} style={styles.inputStyle} />
+                <ExpenseInput label='Date' style={styles.inputStyle} textInputConfig={{
+                    onChangedText: inputChangeHandler.bind(this, 'date'),
+                    value: amountValue.date
+                }} />
             </View>
-            <ExpenseInput label='Description' textInputConfig={{multiline: true,}}  />
+            <ExpenseInput label='Description' textInputConfig={{
+                multiline: true,
+                onChangedText: inputChangeHandler.bind(this, 'description'),
+                value: amountValue.description
+            }} />
       </View>  
     );
 }
