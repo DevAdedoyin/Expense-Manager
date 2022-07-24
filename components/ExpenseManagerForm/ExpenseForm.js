@@ -1,5 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import ExpenseInput from "./ExpenseInput";
+import { useState } from "react";
 
 
 export default function ExpenseForm({ onCancel, buttonLabel }) {
