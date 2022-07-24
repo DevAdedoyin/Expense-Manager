@@ -40,11 +40,7 @@ export default function ManageExpenses({ route, navigation }) {
     }
 
     return (<View style={styles.body}>      
-            <ExpenseForm />
-            <View style={styles.buttonsContainer}>
-                <AppButton style={styles.buttonStyle} mode="flat" onPress={cancelHandler}>Cancel</AppButton>
-                <AppButton style={styles.buttonStyle} onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</AppButton>
-        </View>
+        <ExpenseForm onCancel={cancelHandler} buttonLabel={isEditing ? 'Update' : 'Add'} />            
         {isEditing && (<View style={styles.iconContainer} >
             <IconButton color='red' icon='trash' size={30} onPress={deleteHandler}/>
         </View>)}
@@ -58,10 +54,7 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.colors.primaryColor,
         padding: 20
     },
-    buttonStyle: {
-        minWidth: 120,
-        marginHorizontal: 8
-    },
+   
     iconContainer: {
         flexDirection:'row',
         // alignContent: 'center',
@@ -69,13 +62,7 @@ const styles = StyleSheet.create({
         borderTopColor: 'white',
         borderTopWidth: 2,
         marginTop: 20,
-        paddingTop: 10
+        paddingTop: 10,
     },
-    buttonsContainer: {
-        flexDirection: 'row',
-        // flex:1,
-        justifyContent: 'center',
-        // alignItems: 'center',
-        // backgroundColor: 'black'
-    },
+    
 });
