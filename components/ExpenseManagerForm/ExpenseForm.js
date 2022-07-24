@@ -4,6 +4,7 @@ import { useState } from "react";
 import AppButton from "../Button";
 
 
+
 export default function ExpenseForm({ onCancel, buttonLabel }) {
     
     const [amountValue, setAmountValue] = useState({
@@ -43,7 +44,7 @@ export default function ExpenseForm({ onCancel, buttonLabel }) {
             }} />
             <View style={styles.buttonsContainer}>
                 <AppButton style={styles.buttonStyle} mode="flat" onPress={ onCancel }>Cancel</AppButton>
-                <AppButton style={styles.buttonStyle} onPress={ confirmHandler }>{ buttonLabel }</AppButton>
+                <AppButton style={styles.buttonStyle} onPress={ submitHandler }>{ buttonLabel }</AppButton>
             </View>
       </View>  
     );
