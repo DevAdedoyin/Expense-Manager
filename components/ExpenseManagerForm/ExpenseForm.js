@@ -5,7 +5,7 @@ import AppButton from "../Button";
 
 
 
-export default function ExpenseForm({ onCancel, buttonLabel }) {
+export default function ExpenseForm({ onCancel, buttonLabel, onSubmit }) {
     
     const [amountValue, setAmountValue] = useState({
         amount: '',
@@ -22,31 +22,39 @@ export default function ExpenseForm({ onCancel, buttonLabel }) {
         });
     }
 
-    function submitHandler(){}
+    function submitHandler() {
+        const inputData = {
+            amount: +amountValue.amount,
+            description: amountValue.description,
+            date: new Date(amountValue.date)
+        };
+
+        onSubmit(inputData);
+    }
 
     return (
         <View style={ styles.form }>
             <View style={styles.amountDateContainer}>
                 <ExpenseInput label='Amount' textInputConfig={{
                     keyboardType: 'decimal-pad',
-                    onChangedText: inputChangeHandler.bind(this, 'amount'),
+                    onChangeText: inputChangeHandler.bind(this, 'amount'),
                     value: amountValue.amount,
                 }} style={styles.inputStyle} />
                 <ExpenseInput label='Date' style={styles.inputStyle} textInputConfig={{
-                    onChangedText: inputChangeHandler.bind(this, 'date'),
+                    onChangeText: inputChangeHandler.bind(this, 'date'),
                     value: amountValue.date,
                 }} />
             </View>
             <ExpenseInput label='Description' textInputConfig={{
                 multiline: true,
-                onChangedText: inputChangeHandler.bind(this, 'description'),
+                onChangeText: inputChangeHandler.bind(this, 'description'),
                 value: amountValue.description,
             }} />
             <View style={styles.buttonsContainer}>
                 <AppButton style={styles.buttonStyle} mode="flat" onPress={ onCancel }>Cancel</AppButton>
                 <AppButton style={styles.buttonStyle} onPress={ submitHandler }>{ buttonLabel }</AppButton>
             </View>
-      </View>  
+        </View>  
     );
 }
 

@@ -11,7 +11,6 @@ import { ExpenseManager } from "../state/ExpenseManager";
 
 export default function ManageExpenses({ route, navigation }) {
     const expenseCtx = useContext(ExpenseManager);
-    
     const expenseId = route.params?.expenseId;
     const isEditing = !!expenseId;
 
@@ -25,11 +24,11 @@ export default function ManageExpenses({ route, navigation }) {
         navigation.goBack();
     }
     
-    function confirmHandler() {
+    function confirmHandler(expenseData) {
         if (isEditing) {
-            expenseCtx.updateExpenses({description:'Updated expense', amount: 155400.00, date : new Date("2022-07-20")}, expenseId )
+            expenseCtx.updateExpenses(expenseData, expenseId )
         } else {
-            expenseCtx.addExpenses({description:'Gucci bag', amount: 200000.00, date : new Date("2022-07-20")})
+            expenseCtx.addExpenses(expenseData)
         }
         navigation.goBack();
      }
@@ -40,7 +39,7 @@ export default function ManageExpenses({ route, navigation }) {
     }
 
     return (<View style={styles.body}>      
-        <ExpenseForm onCancel={cancelHandler} buttonLabel={isEditing ? 'Update' : 'Add'} />            
+        <ExpenseForm onCancel={cancelHandler} buttonLabel={isEditing ? 'Update' : 'Add'} onSubmit={confirmHandler} />            
         {isEditing && (<View style={styles.iconContainer} >
             <IconButton color='red' icon='trash' size={30} onPress={deleteHandler}/>
         </View>)}
