@@ -4,13 +4,12 @@ import { useState } from "react";
 import AppButton from "../Button";
 
 
-
-export default function ExpenseForm({ onCancel, buttonLabel, onSubmit }) {
+export default function ExpenseForm({ onCancel, buttonLabel, onSubmit, updatableExpense }) {
     
     const [amountValue, setAmountValue] = useState({
-        amount: '',
-        description: '',
-        date: ''
+        amount: updatableExpense ? updatableExpense.amount.toString() : '',
+        description: updatableExpense ? updatableExpense.description : '',
+        date: updatableExpense ? updatableExpense.date.toISOString().slice(0, 10) : '',
     });
 
     function inputChangeHandler(inputIdentifier, amountText) {

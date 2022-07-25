@@ -23,6 +23,8 @@ export default function ManageExpenses({ route, navigation }) {
     function cancelHandler() {
         navigation.goBack();
     }
+
+    const expenseData = expenseCtx.expenses.find(expense => expense.id === expenseId );
     
     function confirmHandler(expenseData) {
         if (isEditing) {
@@ -39,7 +41,7 @@ export default function ManageExpenses({ route, navigation }) {
     }
 
     return (<View style={styles.body}>      
-        <ExpenseForm onCancel={cancelHandler} buttonLabel={isEditing ? 'Update' : 'Add'} onSubmit={confirmHandler} />            
+        <ExpenseForm onCancel={cancelHandler} buttonLabel={isEditing ? 'Update' : 'Add'} onSubmit={confirmHandler} updatableExpense={expenseData} />            
         {isEditing && (<View style={styles.iconContainer} >
             <IconButton color='red' icon='trash' size={30} onPress={deleteHandler}/>
         </View>)}
