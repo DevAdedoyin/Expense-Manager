@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View, Text } from "react-native";
 import ExpenseInput from "./ExpenseInput";
 import { useState } from "react";
 import AppButton from "../Button";
@@ -6,30 +6,49 @@ import AppButton from "../Button";
 
 export default function ExpenseForm({ onCancel, buttonLabel, onSubmit, updatableExpense }) {
     
-    const [amountValue, setAmountValue] = useState({
-        amount: updatableExpense ? updatableExpense.amount.toString() : '',
-        description: updatableExpense ? updatableExpense.description : '',
-        date: updatableExpense ? updatableExpense.date.toISOString().slice(0, 10) : '',
+    const [inputs, setInputs] = useState({
+        amount: {value : updatableExpense ? updatableExpense.amount.toString() : '', isValid: true},
+        description: {value:updatableExpense ? updatableExpense.description : '', isValid:true},
+        date: {value:updatableExpense ? updatableExpense.date.toISOString().slice(0, 10) : '', isValid:true},
     });
 
-    function inputChangeHandler(inputIdentifier, amountText) {
-        setAmountValue((currentInputValues) => {
+    function inputChangeHandler(inputIdentifier, inputText) {
+        setInputs((currentInputValues) => {
             return {
                 ...currentInputValues,
-                [inputIdentifier]: amountText,
+                [inputIdentifier]: {value:inputText, isValid:true},
             }
         });
     }
 
     function submitHandler() {
         const inputData = {
-            amount: +amountValue.amount,
-            description: amountValue.description,
-            date: new Date(amountValue.date)
+            amount: +inputs.amount.value,
+            description: inputs.description.value,
+            date: new Date(inputs.date.value)
         };
+
+        const amountData = inputData.amount > 0 && !isNaN(inputData.amount);
+        const descriptionData = inputData.description.trim().length > 0;
+        const dateData = inputData.date.toString() !== 'Invalid Date';
+
+        if (!amountData || !descriptionData || !dateData) {
+            // return Alert.alert('Wrong Data', 'Please enter an accurate data');
+            setInputs((currentInputs) => {
+                return {
+                    amount: { value: currentInputs.amount.value, isValid: amountData },
+                    description: { value: currentInputs.description.value, isValid: descriptionData },
+                    date: { value: currentInputs.date.value, isValid: dateData },
+                };
+            });
+            
+            return;
+        }
 
         onSubmit(inputData);
     }
+
+    const formIsInvalid = (!inputs.amount.isValid || !inputs.date.isValid || inputs.description.isValid);
 
     return (
         <View style={ styles.form }>
@@ -37,18 +56,19 @@ export default function ExpenseForm({ onCancel, buttonLabel, onSubmit, updatable
                 <ExpenseInput label='Amount' textInputConfig={{
                     keyboardType: 'decimal-pad',
                     onChangeText: inputChangeHandler.bind(this, 'amount'),
-                    value: amountValue.amount,
+                    value: inputs.amount.value,
                 }} style={styles.inputStyle} />
                 <ExpenseInput label='Date' style={styles.inputStyle} textInputConfig={{
                     onChangeText: inputChangeHandler.bind(this, 'date'),
-                    value: amountValue.date,
+                    value: inputs.date.value,
                 }} />
             </View>
             <ExpenseInput label='Description' textInputConfig={{
                 multiline: true,
                 onChangeText: inputChangeHandler.bind(this, 'description'),
-                value: amountValue.description,
+                value: inputs.description.value,
             }} />
+            {formIsInvalid && (<Text style={{color:'grey'}}>Invalid input data. Please enter a valid data.</Text>)}
             <View style={styles.buttonsContainer}>
                 <AppButton style={styles.buttonStyle} mode="flat" onPress={ onCancel }>Cancel</AppButton>
                 <AppButton style={styles.buttonStyle} onPress={ submitHandler }>{ buttonLabel }</AppButton>

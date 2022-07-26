@@ -18,8 +18,7 @@ export default function ExpenseInput({ label, textInputConfig, style}) {
 const styles = StyleSheet.create({
     formContainer: {
         marginHorizontal: 4,
-        marginVertical: 8,
-        
+        marginVertical: 8,   
     },
     labelStyle: {
         color: AppColors.colors.textColorPrimary,
@@ -35,6 +34,6 @@ const styles = StyleSheet.create({
     multilineInput: {
         textAlignVertical: "top",
         minHeight: 100,    
-        marginBottom: 20,
+        marginBottom: 1,
     }
 });
