@@ -7,9 +7,18 @@ import AppButton from "../Button";
 export default function ExpenseForm({ onCancel, buttonLabel, onSubmit, updatableExpense }) {
     
     const [inputs, setInputs] = useState({
-        amount: {value : updatableExpense ? updatableExpense.amount.toString() : '', isValid: true},
-        description: {value:updatableExpense ? updatableExpense.description : '', isValid:true},
-        date: {value:updatableExpense ? updatableExpense.date.toISOString().slice(0, 10) : '', isValid:true},
+        amount: {
+            value: updatableExpense ? updatableExpense.amount.toString() : '',
+            isValid: !!updatableExpense
+        },
+        description: {
+            value: updatableExpense ? updatableExpense.description : '',
+            isValid: !!updatableExpense
+        },
+        date: {
+            value: updatableExpense ? updatableExpense.date.toISOString().slice(0, 10) : '',
+            isValid: !!updatableExpense
+        },
     });
 
     function inputChangeHandler(inputIdentifier, inputText) {
