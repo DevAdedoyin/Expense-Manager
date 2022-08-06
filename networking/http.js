@@ -2,11 +2,14 @@ import axios from "axios";
 
 const BACKEND_URL = "https://react-native-db-4b9ca-default-rtdb.firebaseio.com"
 
-export function storeExpense(expeneData) {
-    axios.post(
+export async function storeExpense(expeneData) {
+    const response = await axios.post(
         BACKEND_URL + "/expense.json",
         expeneData
     );
+
+    const id = response.data.name; // name is what firebase chose to call there id
+    return id;
 }
 
 export async function retrieveExpense() {
@@ -23,10 +26,16 @@ export async function retrieveExpense() {
             date: new Date(response.data[key].date),
             description: response.data[key].description
         };
-        expense.push(expenseObj);
+        expenses.push(expenseObj);
 
         return expenses;
     }
+}
 
+export  function updateExpenses(id, expenseData) {
+    return axios.put(BACKEND_URL + `/expenses/${id}.json`, expenseData);
+}
 
+export function deleteExpenses(id) {
+    return axios.delete(BACKEND_URL + `/expenses/${id}.json`);
 }

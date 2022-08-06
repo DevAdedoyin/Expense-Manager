@@ -6,7 +6,7 @@ import  AppButton  from "../components/Button";
 import ExpenseForm from "../components/ExpenseManagerForm/ExpenseForm";
 import IconButton from "../components/IconButton";
 import { AppColors } from "../constants/Colors";
-import { storeExpense } from "../networking/http";
+import { deleteExpenses, storeExpense, updateExpenses } from "../networking/http";
 import { ExpenseManager } from "../state/ExpenseManager";
 
 
@@ -27,17 +27,21 @@ export default function ManageExpenses({ route, navigation }) {
 
     const expenseData = expenseCtx.expenses.find(expense => expense.id === expenseId );
     
-    function confirmHandler(expenseData) {
+    async function confirmHandler(expenseData) {
         if (isEditing) {
-            expenseCtx.updateExpenses(expenseData, expenseId )
+            
+            expenseCtx.updateExpenses(expenseData, expenseId);
+            await updateExpenses(expenseId, expenseData);
+            
         } else {
-            storeExpense(expenseData)
-            expenseCtx.addExpenses(expenseData)
+            const id = await storeExpense(expenseData);
+            expenseCtx.addExpenses({ ...expenseData, id: id });
         }
         navigation.goBack();
-     }
+     } 
     
-    function deleteHandler() {
+    async function deleteHandler() {
+        await deleteExpenses(expenseId);
         expenseCtx.deleteExpenses(expenseId);
         navigation.goBack();
     }

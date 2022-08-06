@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ExpenseOutput from "../components/ExpensesOutput";
+import { retrieveExpense } from "../networking/http";
 import { ExpenseManager } from "../state/ExpenseManager";
 
 function getRecentDate(date, days) {
@@ -8,6 +9,16 @@ function getRecentDate(date, days) {
 
 export default function RecentExpenses() {
     const expenseCtx = useContext(ExpenseManager);
+
+    useEffect(() => {
+        async function getExpenses() {
+            const expenses = await retrieveExpense();
+            expenseCtx.setExpenses(expenses);
+      }
+      
+        getExpenses();
+    }, [])
+    
 
     const recentExpCtx = expenseCtx.expenses.filter((expense) => {
         const today = new Date();
