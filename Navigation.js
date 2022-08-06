@@ -44,7 +44,7 @@ function ExpensesOverview() {
             headerRight: ({ tintColor }) => <IconButton color={tintColor} icon='add' size={24} onPress={() => {navigation.navigate("ManageExpenses")}} />,
             tabBarActiveTintColor: AppColors.colors.tabBarActive,
             tabBarInactiveTintColor: AppColors.colors.tabBarInactive,   
-            tabBarStyle: { backgroundColor: AppColors.colors.primaryColor , height: 55 },
+            tabBarStyle: { backgroundColor: AppColors.colors.primaryColor, height: 55 },
             tabBarLabelStyle:
                 navigation.isFocused() ? { fontSize: 13,  paddingBottom: 5, fontWeight: '700' }
                     :

@@ -6,6 +6,7 @@ import  AppButton  from "../components/Button";
 import ExpenseForm from "../components/ExpenseManagerForm/ExpenseForm";
 import IconButton from "../components/IconButton";
 import { AppColors } from "../constants/Colors";
+import { storeExpense } from "../networking/http";
 import { ExpenseManager } from "../state/ExpenseManager";
 
 
@@ -30,6 +31,7 @@ export default function ManageExpenses({ route, navigation }) {
         if (isEditing) {
             expenseCtx.updateExpenses(expenseData, expenseId )
         } else {
+            storeExpense(expenseData)
             expenseCtx.addExpenses(expenseData)
         }
         navigation.goBack();

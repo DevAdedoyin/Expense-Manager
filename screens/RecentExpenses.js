@@ -1,7 +1,4 @@
 import { useContext } from "react";
-import {
-    Text, View
-} from "react-native";
 import ExpenseOutput from "../components/ExpensesOutput";
 import { ExpenseManager } from "../state/ExpenseManager";
 
