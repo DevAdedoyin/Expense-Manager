@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import ErrorIndicator from "../components/ErrorIndicator";
 import ExpenseOutput from "../components/ExpensesOutput";
 import LoadingIndicator from "../components/LoadingIndicator";
 import { retrieveExpense } from "../networking/http";
@@ -10,18 +11,28 @@ function getRecentDate(date, days) {
 
 export default function RecentExpenses() {
     const [isFetched, setIsFetched] = useState(true);
+    const [error, setError] = useState();
     const expenseCtx = useContext(ExpenseManager);
 
     useEffect(() => {
         async function getExpenses() {
             setIsFetched(true);
-            const expenses = await retrieveExpense();
+            try {
+                const expenses = await retrieveExpense();
+                expenseCtx.setExpenses(expenses);
+            } catch (error) {
+                setError("Could not set expenses!!!");
+            }  
             setIsFetched(false);
-            expenseCtx.setExpenses(expenses);
       }
-      
         getExpenses();
     }, []);
+
+   
+
+    if (error && !isFetched) {
+        return <ErrorIndicator message={error} />;
+    }
 
     if (isFetched) {
         return <LoadingIndicator/>

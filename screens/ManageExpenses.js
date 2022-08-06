@@ -3,6 +3,7 @@ import {
     Text, View, StyleSheet
 } from "react-native";
 import  AppButton  from "../components/Button";
+import ErrorIndicator from "../components/ErrorIndicator";
 import ExpenseForm from "../components/ExpenseManagerForm/ExpenseForm";
 import IconButton from "../components/IconButton";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -15,7 +16,8 @@ export default function ManageExpenses({ route, navigation }) {
     const expenseCtx = useContext(ExpenseManager);
     const expenseId = route.params?.expenseId;
     const isEditing = !!expenseId;
-    const [isSubmitting, setIsSubmitting] = useState(true)
+    const [isSubmitting, setIsSubmitting] = useState(true);
+    const [error, setError] = useState();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -45,12 +47,22 @@ export default function ManageExpenses({ route, navigation }) {
     
     async function deleteHandler() {
         setIsSubmitting(true);
-        await deleteExpenses(expenseId);
-        expenseCtx.deleteExpenses(expenseId);
-        navigation.goBack();
+        try {
+           await deleteExpenses(expenseId);
+            expenseCtx.deleteExpenses(expenseId);
+            navigation.goBack(); 
+        } catch (error) {
+            setError("Could not delete expense - Please try again later.");
+            setIsSubmitting(false);
+        }
+        
     }
 
-    if (setIsSubmitting) {
+    if (error && !isSubmitting) {
+        return <ErrorIndicator message={error}  />;
+    }
+
+    if (isSubmitting) {
         return <LoadingIndicator/>
     }
 
