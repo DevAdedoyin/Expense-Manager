@@ -5,6 +5,7 @@ import {
 import  AppButton  from "../components/Button";
 import ExpenseForm from "../components/ExpenseManagerForm/ExpenseForm";
 import IconButton from "../components/IconButton";
+import LoadingIndicator from "../components/LoadingIndicator";
 import { AppColors } from "../constants/Colors";
 import { deleteExpenses, storeExpense, updateExpenses } from "../networking/http";
 import { ExpenseManager } from "../state/ExpenseManager";
@@ -14,6 +15,7 @@ export default function ManageExpenses({ route, navigation }) {
     const expenseCtx = useContext(ExpenseManager);
     const expenseId = route.params?.expenseId;
     const isEditing = !!expenseId;
+    const [isSubmitting, setIsSubmitting] = useState(true)
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -28,6 +30,7 @@ export default function ManageExpenses({ route, navigation }) {
     const expenseData = expenseCtx.expenses.find(expense => expense.id === expenseId );
     
     async function confirmHandler(expenseData) {
+        setIsSubmitting(true);
         if (isEditing) {
             
             expenseCtx.updateExpenses(expenseData, expenseId);
@@ -41,9 +44,14 @@ export default function ManageExpenses({ route, navigation }) {
      } 
     
     async function deleteHandler() {
+        setIsSubmitting(true);
         await deleteExpenses(expenseId);
         expenseCtx.deleteExpenses(expenseId);
         navigation.goBack();
+    }
+
+    if (setIsSubmitting) {
+        return <LoadingIndicator/>
     }
 
     return (<View style={styles.body}>      

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ExpenseOutput from "../components/ExpensesOutput";
+import LoadingIndicator from "../components/LoadingIndicator";
 import { retrieveExpense } from "../networking/http";
 import { ExpenseManager } from "../state/ExpenseManager";
 
@@ -8,16 +9,23 @@ function getRecentDate(date, days) {
 }
 
 export default function RecentExpenses() {
+    const [isFetched, setIsFetched] = useState(true);
     const expenseCtx = useContext(ExpenseManager);
 
     useEffect(() => {
         async function getExpenses() {
+            setIsFetched(true);
             const expenses = await retrieveExpense();
+            setIsFetched(false);
             expenseCtx.setExpenses(expenses);
       }
       
         getExpenses();
-    }, [])
+    }, []);
+
+    if (isFetched) {
+        return <LoadingIndicator/>
+    }
     
 
     const recentExpCtx = expenseCtx.expenses.filter((expense) => {
