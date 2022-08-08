@@ -17,7 +17,7 @@ export async function retrieveExpense() {
         BACKEND_URL + "/expense.json"
     );
 
-    const expenses = [];
+    const expenses = []; 
 
     for (const key in response.data) {
         const expenseObj = {

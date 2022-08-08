@@ -31,8 +31,7 @@ export default function Navigations(){
             </NavigationContainer>
             </ExpenseProvider>
         </>
-    );
-            
+    );         
 };
 
 function ExpensesOverview() {

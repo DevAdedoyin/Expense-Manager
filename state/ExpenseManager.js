@@ -113,7 +113,10 @@ export default function ExpenseProvider({ children }) {
     const [expenseState, dispatch] = useReducer(expenseReducer, []);
 
     function addExpenses(expenseData) {
-        dispatch({ type: 'ADD', payload: expenseData });
+        dispatch({
+            type: 'ADD',
+            payload: expenseData
+        });
     }
 
     function setExpenses(expenses) {
@@ -121,11 +124,13 @@ export default function ExpenseProvider({ children }) {
             type: 'SET',
             payload: expenses
         });
-
     }
 
     function deleteExpenses(id) {
-        dispatch({ type: 'DELETE', payload: id });
+        dispatch({
+            type: 'DELETE',
+            payload: id
+        });
     }
 
     function updateExpenses(expenseData, id) {
