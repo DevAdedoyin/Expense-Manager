@@ -27,9 +27,10 @@ export async function retrieveExpense() {
             description: response.data[key].description
         };
         expenses.push(expenseObj);
-
-        return expenses;
+       
     }
+    console.log(`LOG ACTION ${expenses}`);
+    return expenses;
 }
 
 export  function updateExpenses(id, expenseData) {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ErrorIndicator from "../components/ErrorIndicator";
 import ExpenseOutput from "../components/ExpensesOutput";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -19,6 +19,7 @@ export default function RecentExpenses() {
             setIsFetched(true);
             try {
                 const expenses = await retrieveExpense();
+               
                 expenseCtx.setExpenses(expenses);
             } catch (error) {
                 setError("Could not set expenses!!!");
