@@ -48,7 +48,7 @@ function ExpensesOverview() {
                 navigation.isFocused() ? { fontSize: 13,  paddingBottom: 5, fontWeight: '700' }
                     :
                     { fontSize: 12,  paddingBottom: 5, fontStyle: 'italic' },
-            tabBarIconStyle:{ marginTop: 5,   },
+            tabBarIconStyle:{ marginTop: 5, },
             tabBarIcon: ({ focused, size, color }) => {
                 let iconName;
                 switch (route.name) {
