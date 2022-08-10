@@ -19,7 +19,7 @@ export default function RecentExpenses() {
             setIsFetched(true);
             try {
                 const expenses = await retrieveExpense();
-               
+                
                 expenseCtx.setExpenses(expenses);
             } catch (error) {
                 setError("Could not set expenses!!!");
