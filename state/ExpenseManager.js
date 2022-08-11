@@ -119,7 +119,7 @@ export default function ExpenseProvider({ children }) {
 
   function setExpenses(expenses) {
     dispatch({
-      type: "SET",
+      type: "SET",  
       payload: expenses,
     });
   }

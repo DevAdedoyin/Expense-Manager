@@ -17,7 +17,7 @@ export default function ManageExpenses({ route, navigation }) {
   const expenseCtx = useContext(ExpenseManager);
   const expenseId = route.params?.expenseId;
   const isEditing = !!expenseId;
-  const [isSubmitting, setIsSubmitting] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState();
   const [error, setError] = useState();
 
   useLayoutEffect(() => {
